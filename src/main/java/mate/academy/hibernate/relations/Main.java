@@ -22,24 +22,23 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // use this session factory when you will initialize service instances
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         Country usa = new Country("USA");
         CountryDao countryDao = new CountryDaoImpl(sessionFactory);
-        CountryService countryService = new CountryServiceImpl(countryDao); // TODO: initialize this instance
+        CountryService countryService = new CountryServiceImpl(countryDao);
         countryService.add(usa);
 
         Actor vinDiesel = new Actor("Vin Diesel");
         vinDiesel.setCountry(usa);
         ActorDao actorDao = new ActorDaoImpl(sessionFactory);
-        ActorService actorService = new ActorServiceImpl(actorDao); // TODO: initialize this instance
+        ActorService actorService = new ActorServiceImpl(actorDao);
         actorService.add(vinDiesel);
 
         Movie fastAndFurious = new Movie("Fast and Furious");
         fastAndFurious.setActors(List.of(vinDiesel));
         MovieDao movieDao = new MovieDaoImpl(sessionFactory);
-        MovieService movieService = new MovieServiceImpl(movieDao); // TODO: initialize this instance
+        MovieService movieService = new MovieServiceImpl(movieDao);
         movieService.add(fastAndFurious);
         System.out.println(movieService.get(fastAndFurious.getId()));
     }
